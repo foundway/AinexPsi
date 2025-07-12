@@ -2,11 +2,11 @@
 
 Docker image based on ROS2 Humble Perception plus additional Python modules
 
-Build and bring up the Docker image:
+Build a Docker image:
 
 ```% docker compose build```
 
-If the image is already built, just bring up the container:
+Bring up the container:
 
 ```% docker compose up -d```
 

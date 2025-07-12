@@ -19,3 +19,21 @@ servo_controller.set_servo_position(servo_id=24, position=500, duration=1000)
 ```
 from ainex_kinematics.gait_manager import GaitManager
 ```
+
+```
+cd ~/ros_ws
+source devel/setup.sh
+```
+
+```
+import rospy
+from ainex_kinematics.gait_manager import GaitManager
+
+# Initialize the ROS node
+rospy.init_node('gait_manager_node', anonymous=True)
+
+# Now create and use the GaitManager
+gait_manager = GaitManager()
+gait_manager.move(2, 0, 0, 5)
+gait_manager.stop()
+```
