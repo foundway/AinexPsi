@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  ros-humble:
+    build: .
+    container_name: ros-humble-container
+    # Interactive mode for development
+    stdin_open: true
+    tty: true
+    
+    # Network settings
+    network_mode: host
+    
+    # Environment variables
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_DOMAIN_ID=0
+      - ROS_LOCALHOST_ONLY=0
+      - PYTHONPATH=/ros_ws/devel/lib/python3/dist-packages:/ros_ws/src/third_party:/ros_ws/src/ainex_driver/ainex_sdk/src
+      # # ROS1 environment for Ainex SDK
+      - ROS_DISTRO=noetic
+      - ROS_PACKAGE_PATH=/ros_ws/src
+      - ROS_ROOT=/opt/ros/noetic
+      - ROS_MASTER_URI=http://localhost:11311
+    
+    # Volume mounts for development
+    volumes:
+      - ../:/ros2_ws #Mount your ROS2 workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw #X11 for GUI applications
+      - /dev:/dev #defice files
+      - /opt/ros/noetic:/opt/ros/noetic
+      - ~/ros_ws:/ros_ws # Hiwonder's Ainex source code
+      - /dev/ttyAMA0:/dev/ttyAMA0 
+    
+    # Port mappings (if not using host network)
+    # ports:
+    #   - "11311:11311"  # ROS master
+    #   - "8080:8080"    # Web interface (if any)
+    
+    # Working directory
+    working_dir: /ros2_ws
+    
+    # Command to run (optional - remove for interactive shell)
+    # command: bash
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Resource limits (optional)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 4G
+    #       cpus: '2.0'
+    
+    # Privileges for GPIO access
+    privileged: true
+    # Alternative: specific capabilities for GPIO
+    # cap_add:
+    #   - SYS_RAWIO 

@@ -1,0 +1,49 @@
+# ROS2 workspace build artifacts
+build/
+install/
+log/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ROS1 workspace build artifacts (if any)
+devel/
+*.egg-info/
+
+# Docker
+.dockerignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# Environment files
+.env
+.env.local
+
+# Node modules (if using any web tools)
+node_modules/
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dylib
+
+# Backup files
+*~
+*.orig 
