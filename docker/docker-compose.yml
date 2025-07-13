@@ -16,12 +16,6 @@ services:
       - DISPLAY=${DISPLAY}
       - ROS_DOMAIN_ID=0
       - ROS_LOCALHOST_ONLY=0
-      - PYTHONPATH=/ros_ws/devel/lib/python3/dist-packages:/ros_ws/src/third_party:/ros_ws/src/ainex_driver/ainex_sdk/src:/ros_ws/src/ainex_driver/ainex_kinematics/src:/ros_ws/devel/.private/ainex_kinematics/lib/python3/dist-packages:/ros_ws/devel/.private/ainex_interfaces/lib/python3/dist-packages
-      # # ROS1 environment for Ainex SDK
-      - ROS_DISTRO=noetic
-      - ROS_PACKAGE_PATH=/ros_ws/src
-      - ROS_ROOT=/opt/ros/noetic
-      - ROS_MASTER_URI=http://localhost:11311
     
     # Volume mounts for development
     volumes:
@@ -40,8 +34,8 @@ services:
     # Working directory
     working_dir: /ros2_ws
     
-    # Command to run with proper ROS1 environment setup
-    command: bash /ros2_ws/docker/container_setup.sh
+    # Command to run (optional - remove for interactive shell)
+    # command: bash
     
     # Restart policy
     restart: unless-stopped
