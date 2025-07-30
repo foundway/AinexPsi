@@ -1,0 +1,75 @@
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros2_package_name: 'ainex_interfaces'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'AppWalkingParam'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'AppWalkingParam'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'ColorDetect'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'ColorDetect'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'ColorsDetect'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'ColorsDetect'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'FingerPosition'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'FingerPosition'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'HeadState'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'HeadState'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'LineROI'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'LineROI'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'ObjectInfo'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'ObjectInfo'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'ObjectsInfo'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'ObjectsInfo'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'PixelPosition'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'PixelPosition'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'RGB'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'RGB'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'ROI'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'ROI'
+
+-
+  ros1_package_name: 'ainex_interfaces'
+  ros1_message_name: 'WalkingParam'
+  ros2_package_name: 'ainex_interfaces'
+  ros2_message_name: 'WalkingParam'

@@ -1,0 +1,41 @@
+services:
+  foxy:
+    build: .
+    container_name: foxy
+    stdin_open: true
+    tty: true
+    network_mode: host
+    
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_DOMAIN_ID=0
+      - ROS_LOCALHOST_ONLY=0
+      - ROS1_INSTALL_PATH=/opt/ros/noetic
+      - ROS2_INSTALL_PATH=/opt/ros/foxy
+
+    volumes:
+      - ../bridge_ws:/bridge_ws
+      - ../ros1_interfaces_ws:/ros1_interfaces_ws
+      - ../ros2_interfaces_ws:/ros2_interfaces_ws
+      - ../main_ws:/main_ws
+      - ~/ros_ws/src/ainex_interfaces/srv:/ros1_interfaces_ws/src/ainex_interfaces/srv:ro
+      - ~/ros_ws/src/ainex_interfaces/msg:/ros1_interfaces_ws/src/ainex_interfaces/msg:ro
+      - ~/ros_ws/src/ainex_interfaces/srv:/ros2_interfaces_ws/src/ainex_interfaces/srv:ro
+      - ~/ros_ws/src/ainex_interfaces/msg:/ros2_interfaces_ws/src/ainex_interfaces/msg:ro
+      - ~/ros_ws:/ros_ws:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 for GUI applications
+      - /opt/ros/noetic:/opt/ros/noetic:ro
+      - /dev:/dev
+    
+    working_dir: /
+    restart: unless-stopped
+    privileged: true
+    
+    # Port mappings (if not using host network)
+    # ports:
+    #   - "11311:11311"  # ROS master
+    #   - "8080:8080"    # Web interface (if any)
+
+    # Command to run (optional - remove for interactive shell)
+    # command: bash
+    
