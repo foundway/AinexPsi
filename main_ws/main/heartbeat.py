@@ -56,9 +56,7 @@ class HeartbeatNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    
     node = HeartbeatNode()
-    
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

@@ -5,6 +5,7 @@ FROM ros:foxy-ros-base-focal
 RUN apt-get update && \
     apt-get install -y \
     python3-serial \
+    python3-pip \
 
     # Needed for building the ros1_bridge
     libyaml-cpp-dev \
