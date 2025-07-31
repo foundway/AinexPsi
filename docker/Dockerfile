@@ -18,6 +18,9 @@ RUN apt-get update && \
 
     && rm -rf /var/lib/apt/lists/*
 
+# Install Python packages
+RUN pip3 install readchar
+
 # Clone repositories
 WORKDIR /bridge_ws/src
 RUN git clone -b foxy https://github.com/ros2/ros1_bridge.git

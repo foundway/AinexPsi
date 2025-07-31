@@ -6,9 +6,7 @@ from ainex_interfaces.srv import SetWalkingCommand, GetWalkingState
 from ainex_interfaces.msg import WalkingParam
 import time
 import threading
-import sys
-import tty
-import termios
+import readchar
 
 class GaitNode(Node):
     def __init__(self):
@@ -48,24 +46,14 @@ class GaitNode(Node):
         self.keyboard_thread.start()
         self.get_logger().info('Keyboard control active. Use arrow keys (w/s/a/d) to control walking.')
 
-    def get_char(self):
-        """Get a single character without Enter key"""
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        try:
-            tty.setraw(sys.stdin.fileno())
-            ch = sys.stdin.read(1)
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
-
     def keyboard_loop(self):
         """Main keyboard input loop"""
         self.get_logger().info('Press w/s/a/d for up/down/left/right, q to quit')
         
-        while self.keyboard_running:
-            try:
-                key = self.get_char().lower()
+        try:
+            while self.keyboard_running:
+                # Use readchar to get a single keystroke
+                key = readchar.readkey().lower()
                 
                 if key == 'w':
                     self.get_logger().info('UP arrow key pressed')
@@ -82,12 +70,10 @@ class GaitNode(Node):
                 else:
                     self.get_logger().debug(f'Unknown key pressed: {key}')
                     
-            except KeyboardInterrupt:
-                self.get_logger().info('Keyboard interrupt received')
-                break
-            except Exception as e:
-                self.get_logger().error(f'Keyboard input error: {str(e)}')
-                break
+        except KeyboardInterrupt:
+            self.get_logger().info('Keyboard interrupt received')
+        except Exception as e:
+            self.get_logger().error(f'Keyboard input error: {str(e)}')
 
     def stop_keyboard_control(self):
         """Stop keyboard control"""
