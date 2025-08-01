@@ -60,11 +60,12 @@ gait_manager.stop()
 export PYTHONPATH="/ros_ws/src/third_party:/ros_ws/src/ainex_driver/ainex_sdk/src:/home/ubuntu/ros_ws/devel/lib/python3/dist-packages:$PYTHONPATH"
 ```
 
-### Clean up space
+### 
 ```
 sudo rm -rf /var/lib/snapd/cache/*
 docker image prune -a -f
 docker builder prune -a -f
+sudo apt clean
 ```
 
 ### Common Test Commands

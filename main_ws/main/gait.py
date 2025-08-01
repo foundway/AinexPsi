@@ -3,7 +3,7 @@
 import rclpy
 from rclpy.node import Node
 from ainex_interfaces.srv import SetWalkingCommand, GetWalkingState
-from ainex_interfaces.msg import WalkingParam
+from ainex_interfaces.msg import WalkingParam, AppWalkingParam
 import time
 import threading
 import readchar
@@ -15,6 +15,9 @@ class GaitNode(Node):
         # Create service clients for walking control
         self.walking_command_client = self.create_client(SetWalkingCommand, '/walking/command')
         self.get_walking_state_client = self.create_client(GetWalkingState, '/walking/is_walking')
+        
+        # Create publisher for app walking parameters
+        self.app_walking_pub = self.create_publisher(AppWalkingParam, '/app/set_walking_param', 10)
         
         # Wait for services to be available
         while not self.walking_command_client.wait_for_service(timeout_sec=1.0):
@@ -56,13 +59,20 @@ class GaitNode(Node):
                 key = readchar.readkey().lower()
                 
                 if key == 'w':
-                    self.get_logger().info('UP arrow key pressed')
+                    self.get_logger().info('UP arrow key pressed. Starting walking...')
+                    self.start_walking()
+                    self.publish_app_walking_param(2, 0.0, 1.0, 0.0, 0.0)
                 elif key == 's':
-                    self.get_logger().info('DOWN arrow key pressed')
+                    self.get_logger().info('DOWN arrow key pressed. Stop walking...')
+                    self.stop_walking()
                 elif key == 'a':
                     self.get_logger().info('LEFT arrow key pressed')
+                    self.start_walking()
+                    self.publish_app_walking_param(2, 0.0, 0.0, 0.0, 10.0)
                 elif key == 'd':
                     self.get_logger().info('RIGHT arrow key pressed')
+                    self.start_walking()
+                    self.publish_app_walking_param(2, 0.0, 0.0, 0.0, -10.0)
                 elif key == 'q':
                     self.get_logger().info('Quit key pressed - stopping keyboard control')
                     self.keyboard_running = False
@@ -83,6 +93,18 @@ class GaitNode(Node):
         self.get_logger().info('Keyboard control stopped')
 
     # Walking control functions
+
+    def publish_app_walking_param(self, speed, height, x, y, angle):
+        """Publish walking parameters to /app/set_walking_param topic"""
+        msg = AppWalkingParam()
+        msg.speed = speed
+        msg.height = height
+        msg.x = x
+        msg.y = y
+        msg.angle = angle
+        
+        self.app_walking_pub.publish(msg)
+        self.get_logger().info(f'Published to /app/set_walking_param: speed={speed}, height={height}, x={x}, y={y}, angle={angle}')
 
     def enable_control(self):
         """Enable walking control system"""
