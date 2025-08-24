@@ -20,6 +20,7 @@ RUN apt-get update && \
 
 # Install Python packages
 RUN pip3 install readchar
+RUN pip3 install RPi.GPIO
 
 # Clone repositories
 WORKDIR /bridge_ws/src

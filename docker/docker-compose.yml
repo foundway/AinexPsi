@@ -12,6 +12,7 @@ services:
       - ROS_LOCALHOST_ONLY=0
       - ROS1_INSTALL_PATH=/opt/ros/noetic
       - ROS2_INSTALL_PATH=/opt/ros/foxy
+      - PYTHONPATH=${PYTHONPATH}:/ros_ws/src/ainex_driver/ainex_sdk/src/
 
     volumes:
       - ../bridge_ws:/bridge_ws

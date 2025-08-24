@@ -15,7 +15,7 @@ Ainex is running on ROS with no plan for ROS 2 support. Therefore, AinexΨ runs 
 ### ROS1 Bridge [↗](./bridge_ws)
 ```
 cd bridge_ws
-source /opt/ros/foxy/setup.bash && source install/setup.bash 
+source install/setup.bash 
 ros2 run ros1_bridge dynamic_bridge --bridge-all-topics
 ```
 ### Main logic 
@@ -27,17 +27,13 @@ TBD
 ## Notes
 
 ### Controls
-```
+```python
 from ainex_sdk.hiwonder_servo_controller import HiwonderServoController
 servo_controller = HiwonderServoController(port='/dev/ttyAMA0', baudrate=115200)
 servo_controller.set_servo_position(servo_id=24, position=500, duration=1000)
 ```
-(Not implemented) to make gait commands:
-```
-from ainex_kinematics.gait_manager import GaitManager
-```
 
-```
+```bash
 cd ~/ros_ws
 source devel/setup.sh
 ```

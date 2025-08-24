@@ -48,6 +48,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WalkingParam.msg"
   "msg/ObjectInfo.msg"
   "msg/ObjectsInfo.msg"
+  "msg/MotionCommand.msg"
   "srv/SetWalkingParam.srv"
   "srv/SetString.srv"
   "srv/GetWalkingParam.srv"
