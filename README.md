@@ -18,6 +18,13 @@ cd bridge_ws
 source install/setup.bash 
 ros2 run ros1_bridge dynamic_bridge --bridge-all-topics
 ```
+
+### ROSBridge Suite
+```bash
+source /opt/ros/foxy/setup.bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml port:=9091
+```
+
 ### Main logic 
 
 TBD

@@ -16,6 +16,9 @@ RUN apt-get update && \
     python3-gnupg \
     python3-pycryptodome \
 
+    # Needed for WebSocket communication via web interfaces
+    ros-foxy-rosbridge-server \
+
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python packages
