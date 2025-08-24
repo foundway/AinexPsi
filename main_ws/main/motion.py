@@ -3,6 +3,7 @@
 import rclpy
 from rclpy.node import Node
 from ainex_interfaces.msg import MotionCommand
+from ainex_sdk.hiwonder_servo_controller import HiwonderServoController
 import time
 import math
 
@@ -17,13 +18,16 @@ class MotionNode(Node):
             self.motion_callback,
             10
         )
+
+        self.servo_controller = HiwonderServoController(port='/dev/ttyAMA0', baudrate=115200)
         
         self.get_logger().info('Motion node initialized - listening to /motion/command topic')
 
     def motion_callback(self, msg):
         """Callback function that prints received motion commands"""
-        self.get_logger().info(f'Received motion command: servo_id={msg.servo_id}, position={msg.position}, duration={msg.duration}')
-        print(f'Motion Command: servo_id={msg.servo_id}, position={msg.position}, duration={msg.duration}')
+        for i in range(len(msg.servo_id)):
+            self.get_logger().info(f'Received motion command: servo_id={msg.servo_id[i]}, position={msg.position[i]}, duration={msg.duration[i]}')
+            self.servo_controller.set_servo_position(servo_id=msg.servo_id[i], position=msg.position[i], duration=msg.duration[i])
 
 def main(args=None):
     rclpy.init(args=args)

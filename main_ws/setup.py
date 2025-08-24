@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'heartbeat = main.heartbeat:main',
-            'gait = main.gait:main'
+            'gait = main.gait:main',
+            'motion = main.motion:main'
         ],
     },
 )

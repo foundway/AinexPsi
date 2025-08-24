@@ -19,10 +19,10 @@ services:
       - ../ros1_interfaces_ws:/ros1_interfaces_ws
       - ../ros2_interfaces_ws:/ros2_interfaces_ws
       - ../main_ws:/main_ws
-      - ~/ros_ws/src/ainex_interfaces/srv:/ros1_interfaces_ws/src/ainex_interfaces/srv:ro
-      - ~/ros_ws/src/ainex_interfaces/msg:/ros1_interfaces_ws/src/ainex_interfaces/msg:ro
-      - ~/ros_ws/src/ainex_interfaces/srv:/ros2_interfaces_ws/src/ainex_interfaces/srv:ro
-      - ~/ros_ws/src/ainex_interfaces/msg:/ros2_interfaces_ws/src/ainex_interfaces/msg:ro
+      # - ~/ros_ws/src/ainex_interfaces/srv:/ros1_interfaces_ws/src/ainex_interfaces/srv:ro
+      # - ~/ros_ws/src/ainex_interfaces/msg:/ros1_interfaces_ws/src/ainex_interfaces/msg:ro
+      # - ~/ros_ws/src/ainex_interfaces/srv:/ros2_interfaces_ws/src/ainex_interfaces/srv:ro
+      # - ~/ros_ws/src/ainex_interfaces/msg:/ros2_interfaces_ws/src/ainex_interfaces/msg:ro
       - ~/ros_ws:/ros_ws:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 for GUI applications
       - /opt/ros/noetic:/opt/ros/noetic:ro
